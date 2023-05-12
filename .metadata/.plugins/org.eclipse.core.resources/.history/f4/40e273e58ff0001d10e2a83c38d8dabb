@@ -1,0 +1,55 @@
+package com.example.medicare.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.medicare.entity.Product;
+import com.example.medicare.repository.ProductRepository;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	// add product
+	public Product addProduct(Product product) {
+		return this.productRepository.save(product);
+	}
+
+	// find product by id
+	public Product findProduct(Long pid) {
+		return this.productRepository.findById(pid).get();
+	}
+
+	// find all products
+	public List<Product> findAllProducts() {
+		return this.productRepository.findAll();
+	}
+
+	// find product by name or salt
+	public List<Product> findByNameOrSalt(String name, String salt) {
+		List<Product> products = this.productRepository.findByNameContainingIgnoreCaseOrSaltContainingIgnoreCase(name,
+				salt);
+		return products;
+	}
+
+	// find product by category
+	public List<Product> findProductByCategory(String category) {
+		List<Product> products = this.productRepository.findByCategory(category);
+		return products;
+	}
+
+	// delete product by id
+	public void deleteProductById(Long pid) {
+		this.productRepository.deleteById(pid);
+	}
+
+	// find available products
+	public List<Product> findTrueProduct(String name) {
+		List<Product> products = this.productRepo.findByNameAndIsAvailableTrue(name);
+		return products;
+	}
+}

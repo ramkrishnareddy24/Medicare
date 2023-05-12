@@ -1,0 +1,51 @@
+package com.example.medicare.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class CartOrder {
+	
+	private String username;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String address;
+	
+	private String district;
+	
+	private int pinCode;
+	
+	private String state;
+	
+	private String contact;
+	
+	private Double paidAmount;
+	
+	private String paymentMode;
+	
+	private Set<CartItem> cartItem = new HashSet<>();
+
+	public CartOrder() {
+		super();
+	}
+
+	public CartOrder(String username, String firstName, String lastName, String address, String district, int pinCode,
+			String state, String contact, Double paidAmount, String paymentMode, Set<CartItem> cartItem) {
+		super();
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.district = district;
+		this.pinCode = pinCode;
+		this.state = state;
+		this.contact = contact;
+		this.paidAmount = paidAmount;
+		this.paymentMode = paymentMode;
+		this.cartItem = cartItem;
+	}
+	
+	
+}

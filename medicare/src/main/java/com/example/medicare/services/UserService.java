@@ -1,0 +1,37 @@
+package com.example.medicare.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.medicare.entity.User;
+import com.example.medicare.repository.UserRepository;
+
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	// register a new user
+	public User createUser(User user) {
+		User newUser = this.userRepository.findByUsername(user.getUsername());
+
+		try {
+			if (newUser != null) {
+				throw new Exception("Username already exists!");
+			} else {
+				user.setPassword(user.getPassword());
+				newUser = this.userRepository.save(user);
+			}
+		} catch (Exception e) {
+			System.out.println("User is already created!");
+			System.out.println(e);
+		}
+		return newUser;
+	}
+
+	public User getByUsername(String username) {
+		User user = this.userRepository.findByUsername(username);
+		return user;
+	}
+}

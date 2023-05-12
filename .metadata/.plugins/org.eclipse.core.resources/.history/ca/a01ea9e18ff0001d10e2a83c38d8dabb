@@ -1,0 +1,5 @@
+package com.example.medicare.services;
+
+public class ProductService {
+
+}
